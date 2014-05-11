@@ -1,8 +1,8 @@
 class Api::CommentsController < ApplicationController
   
   def create
-    @comment = TodoComment.new(params[:id])
-    
+    @comment = TodoComment.new(comment_params)
+    debugger
     if @comment.save
       render json: @comment
     else
@@ -19,6 +19,8 @@ class Api::CommentsController < ApplicationController
     @comment = TodoComment.find(params[:id])
     render json: @comment
   end
-
-
+  
+  def comment_params
+    params.require(:comment).permit(:content, :todo_id)
+  end
 end
