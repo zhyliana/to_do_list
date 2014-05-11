@@ -1,13 +1,22 @@
 window.Todo.Views.TodosIndex = Backbone.View.extend({
   template: JST["todos/index"],
   
-  initialize: function(options){
-    this.todos = options.todos;
+  events: {
+    "click button#refresh": "refresh"
   },
   
+  refresh: function(){
+    var view = this;
+    
+    this.collection.fetch({
+      success: function(){ view.render(); }
+    });
+    
+  },
+
   render: function(){
     var renderedContent = this.template({
-      todos: this.todos
+      todos: this.collection
     });
     
     this.$el.html(renderedContent);
