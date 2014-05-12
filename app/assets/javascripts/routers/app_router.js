@@ -1,8 +1,9 @@
 window.Todo.Routers.AppRouter = Backbone.Router.extend({
   routes: {
     //when you go to this page : invoke this function
-    "" : "todosIndex",
-    "todos/new": "todosNew"
+    "": "todosIndex",
+    "todos/new": "todosNew",
+    "todos/:id": "todosShow",
   },
   
   todosIndex: function(){
@@ -17,5 +18,16 @@ window.Todo.Routers.AppRouter = Backbone.Router.extend({
   todosNew: function(){
     var newView = new Todo.Views.TodosNew();
     $("body").html(newView.render().$el);
+  },
+  
+  todosShow: function(id){
+    //troubling!!
+    var model = Todo.Collections.todos.get(id);
+    // debugger
+    var showView = new Todo.Views.TodosShow({
+      model: model
+    });
+    
+    $("body").html(showView.render().$el);
   }
 });

@@ -4,7 +4,9 @@
 <ul>
   <% todos.each(function (todo){ %>
     <!-- still using get -->
-    <li><%= todo.get("title") %></li>
+    <li><a href="#/todos/<%= todo.get("id") %>">
+      <%= todo.get("title") %></li>
+    </a>
   <% }) %>
 </ul>
 
