@@ -1,7 +1,7 @@
 window.Todo.Routers.AppRouter = Backbone.Router.extend({
   routes: {
     //when you go to this page : invoke this function
-    "" : "todoIndex",
+    "" : "todosIndex",
     "todos/new": "todosNew"
   },
   

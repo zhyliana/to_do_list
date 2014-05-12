@@ -1,7 +1,7 @@
 window.Todo = {
   Models: {}, 
   Collections: {},
-  Routers: {}. 
+  Routers: {}, 
   Views: {},
   
   initialize: function(){
