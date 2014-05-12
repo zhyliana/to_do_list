@@ -5,12 +5,18 @@ window.Todo.Views.TodosIndex = Backbone.View.extend({
     "click button#refresh": "refresh"
   },
   
-  refresh: function(){
-    var view = this;
+  initialize: function(options){
+    //[hey you...].listenTo( [when this...], [...does this...], [...you do that] )
     
-    this.collection.fetch({
-      success: function(){ view.render(); }
-    });
+    this.listenTo(
+      this.collection, 
+      "sync add", 
+      this.render
+    );
+  },
+  
+  refresh: function(){
+    this.collection.fetch();
     
   },
 

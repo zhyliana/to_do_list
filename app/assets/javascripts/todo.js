@@ -5,15 +5,12 @@ window.Todo = {
   
   initialize: function(){
     var view = new Todo.Views.TodosIndex({
-      collection: Todo.Collections.todos,
-      className: "my-special-class"
+      collection: Todo.Collections.todos
     });
     
-    Todo.Collections.todos.fetch({
-     success: function(){
-       $("body").append(view.render().$el);
-     } 
-    });
+    Todo.Collections.todos.fetch();
+    $("body").append(view.render().$el);
+
   }
 };
 
