@@ -4,7 +4,7 @@ class Api::CommentsController < ApplicationController
     @comment = TodoComment.new(comment_params)
     debugger
     if @comment.save
-      render json: @comment
+      render "comments/show"
     else
       render json: @comment.errors, status: :unprocessable_entity
     end
@@ -12,12 +12,12 @@ class Api::CommentsController < ApplicationController
 
   def index
     @comments = TodoComment.where(todo_id: params[:todo_id])
-    render json: @comments
+    render "comments/index"
   end
   
   def show
     @comment = TodoComment.find(params[:id])
-    render json: @comment
+    render "comments/show"
   end
   
   def comment_params
