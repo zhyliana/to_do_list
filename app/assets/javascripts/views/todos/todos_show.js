@@ -3,7 +3,7 @@ window.Todo.Views.TodosShow = Backbone.View.extend({
   
   initialize: function(option){
     this.listenTo(this.model, "sync", this.render);
-    this.listenTo(this.model.comments(), "sync", this.render)
+    this.listenTo(this.model.comments(), "sync add remove", this.render)
   },
   
   render: function(){
@@ -13,6 +13,14 @@ window.Todo.Views.TodosShow = Backbone.View.extend({
     });
       
     this.$el.html(renderedContent);
+    
+    this.model.comments().each(function(comment){
+      var commentsShowView = new Todo.Views.CommentsShow({
+       model: comment 
+      });
+      
+      this.$(".comments").append(commentsShowView.render().$el);
+    });
     
     return this;
   }
