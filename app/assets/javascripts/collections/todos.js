@@ -4,11 +4,16 @@ window.Todo.Collections.Todos = Backbone.Collection.extend({
   
   getOrFetch: function(id){
     var model;
+    var todos = this;
     if(model = this.get(id)){
       return model;
     } else {
       model = new Todo.Models.Todo({id: id});
-      model.fetch();
+      model.fetch({
+        success: function(){
+          todos.add(model)
+        }
+      });
       return model;
     }
   }
