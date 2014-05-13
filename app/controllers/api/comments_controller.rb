@@ -15,6 +15,13 @@ class Api::CommentsController < ApplicationController
     render "comments/index"
   end
   
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    render "comments/show"
+  end
+
+  
   def show
     @comment = TodoComment.find(params[:id])
     render "comments/show"
